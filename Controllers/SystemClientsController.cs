@@ -30,17 +30,9 @@ namespace ControllerAPI.Controllers
         [SwaggerResponse(200, "I guess everything worked")]
         [SwaggerResponse(417, "SQL EXCEPTION")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
-            try
-            {
-                var systemClient = await _repository.GetAllResponseService();
-                return Ok(new { payload = systemClient });
-            }
-            catch (SqlException ex)
-            {
-                return StatusCode(417, new { detail = "SqlException", message = ex.Message });
-            }
+            return Ok(new { in_progress = "TODO" });
         }
 
         //// GET: SystemClients/Details/5
@@ -163,18 +155,18 @@ namespace ControllerAPI.Controllers
         //    return _context.SystemClients.Any(e => e.Id == id);
         //}
 
-        [HttpPost("base64")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetTest([FromBody] SystemClient systemClient)
-        {
-            try
-            {
-                return Ok(new { payload = systemClient });
-            }
-            catch (System.FormatException e)
-            {
-                return BadRequest(new { detail = "Bad base64 string", message = e.Message });
-            }
-        }
+        //[HttpPost("base64")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public IActionResult GetTest([FromBody] SystemClient systemClient)
+        //{
+        //    try
+        //    {
+        //        return Ok(new { payload = systemClient });
+        //    }
+        //    catch (System.FormatException e)
+        //    {
+        //        return BadRequest(new { detail = "Bad base64 string", message = e.Message });
+        //    }
+        //}
     }
 }
